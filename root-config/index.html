@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Root Config</title>
+
+  <!-- This script is required for react-refresh to work properly -->
+  <script>
+    const origin = "http://localhost:3001"
+
+    const reactRefreshInteropabilityScript = document.createElement('script');
+    reactRefreshInteropabilityScript.type = 'module';
+    reactRefreshInteropabilityScript.textContent = 
+      `import RefreshRuntime from '${origin}/@react-refresh';
+        RefreshRuntime.injectIntoGlobalHook(window);`
+    window.$RefreshReg$ = () => { };
+    window.$RefreshSig$ = () => (type) => type;
+    window.__vite_plugin_react_preamble_installed__ = true;
+    document.head.append(reactRefreshInteropabilityScript);
+  </script>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.5/+esm",
+        "@example/root-config": "http://localhost:3000/src/main.ts",
+        "@example/microfrontend": "http://localhost:3001/src/main.ts"
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+  <script>
+    import('@example/root-config');
+  </script>
+  <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
+</body>
+
+</html>
