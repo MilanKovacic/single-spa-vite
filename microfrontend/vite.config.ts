@@ -1,21 +1,23 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import externalize from 'vite-plugin-externalize-dependencies';
+
+const externalDependencies = ["single-spa", "react", "react/jsx-dev-runtime", "react/jsx-runtime", "react-dom", "react-dom/client"]
 
 export default defineConfig(({ command }) => {
   return {
     build: {
       rollupOptions: {
-        preserveEntrySignatures: "strict",
-        input: "main.ts",
+        input: "src/main.ts",
         output: {
           format: "esm",
-          entryFileNames: `[name].js`,
         },
-        external: ["single-spa"]
+        external: externalDependencies
       },
     },
     plugins: [
-      react()
+      react(),
+      externalize({ externals: externalDependencies })
     ],
   }
 })
