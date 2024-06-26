@@ -1,7 +1,7 @@
 {
   "name": "@example/root-config",
   "scripts": {
-    "dev": "vite --port 3000",
+    "dev": "vite --port 3005",
     "lint": "eslint src --ext js,ts,tsx",
     "test": "cross-env BABEL_ENV=test jest --passWithNoTests",
     "format": "prettier --write .",
